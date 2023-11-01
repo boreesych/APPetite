@@ -1,0 +1,17 @@
+.title {
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 54px;
+  line-height: 110%;
+  color: #000;
+  margin: 0 0 40px;
+  margin-top: 40px;
+  text-align: left;
+}
+
+@media screen and (max-width: 950px) {
+  .title {
+    font-size: 34px;
+  }
+}
