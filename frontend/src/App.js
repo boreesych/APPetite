@@ -324,6 +324,9 @@ function App() {
                 setSubmitError={setRegistrError}
               />
             </Route>
+            <Route exact path="/">
+              <Redirect to="/recipes" />
+            </Route>
             <Route path="*">
               <NotFound />
             </Route>
