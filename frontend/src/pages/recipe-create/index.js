@@ -8,7 +8,6 @@ import {
   Main,
   Form,
   Button,
-  Checkbox,
   Textarea,
 } from "../../components";
 import styles from "./styles.module.css";
@@ -40,6 +39,28 @@ const RecipeCreate = ({ onEdit }) => {
   const [submitError, setSubmitError] = useState({ submitError: "" });
   const [ingredientError, setIngredientError] = useState("");
 
+  const handleAddIngredient = () => {
+    if (
+      ingredientValue.amount === "" ||
+      ingredientValue.name === "" ||
+      !ingredientValue.id
+    ) {
+      return setIngredientError("Ингредиент не выбран");
+    }
+
+    if (recipeIngredients.find(({ name }) => name === ingredientValue.name)) {
+      return setIngredientError("Ингредиент уже выбран");
+    }
+
+    setRecipeIngredients([...recipeIngredients, ingredientValue]);
+    setIngredientValue({
+      name: "",
+      id: null,
+      amount: "",
+      measurement_unit: "",
+    });
+  };
+
   useEffect(
     (_) => {
       if (ingredientValue.name === "") {
@@ -68,15 +89,23 @@ const RecipeCreate = ({ onEdit }) => {
   };
 
   const checkIfDisabled = () => {
-    return (
+    if (
       recipeText === "" ||
       recipeName === "" ||
       recipeIngredients.length === 0 ||
-      value.filter((item) => item.value).length === 0 ||
       recipeTime === "" ||
       recipeFile === "" ||
       recipeFile === null
-    );
+    ) {
+      setSubmitError({ submitError: "Заполните все поля!" });
+      return true;
+    }
+
+    if (value.filter((item) => item.value).length === 0) {
+      setSubmitError({ submitError: "Выберите хотя бы один тег" });
+      return true;
+    }
+    return false;
   };
 
   return (
@@ -84,10 +113,7 @@ const RecipeCreate = ({ onEdit }) => {
       <Container>
         <MetaTags>
           <title>Создание рецепта</title>
-          <meta
-            name="description"
-            content="Фудграм - Создание рецепта"
-          />
+          <meta name="description" content="Фудграм - Создание рецепта" />
           <meta property="og:title" content="Создание рецепта" />
         </MetaTags>
         <Title title="Создание рецепта" />
@@ -96,7 +122,7 @@ const RecipeCreate = ({ onEdit }) => {
           onSubmit={(e) => {
             e.preventDefault();
             if (checkIfDisabled()) {
-              return setSubmitError({ submitError: "Заполните все поля!" });
+              return;
             }
             const data = {
               text: recipeText,
@@ -190,6 +216,12 @@ const RecipeCreate = ({ onEdit }) => {
               <div className={styles.ingredientsAmountInputContainer}>
                 <p className={styles.amountText}>в количестве </p>
                 <Input
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      handleAddIngredient();
+                    }
+                  }}
                   className={styles.ingredientsAmountInput}
                   inputClassName={styles.ingredientsAmountValue}
                   onChange={(e) => {
@@ -203,6 +235,7 @@ const RecipeCreate = ({ onEdit }) => {
                   }}
                   placeholder={0}
                   value={ingredientValue.amount}
+                  type="number"
                 />
                 {ingredientValue.measurement_unit !== "" && (
                   <div className={styles.measurementUnit}>
@@ -221,25 +254,7 @@ const RecipeCreate = ({ onEdit }) => {
                 />
               )}
             </div>
-            <div
-              className={styles.ingredientAdd}
-              onClick={(_) => {
-                if (
-                  ingredientValue.amount === "" ||
-                  ingredientValue.name === "" ||
-                  !ingredientValue.id
-                ) {
-                  return setIngredientError("Ингредиент не выбран");
-                }
-                setRecipeIngredients([...recipeIngredients, ingredientValue]);
-                setIngredientValue({
-                  name: "",
-                  id: null,
-                  amount: "",
-                  measurement_unit: "",
-                });
-              }}
-            >
+            <div className={styles.ingredientAdd} onClick={handleAddIngredient}>
               Добавить ингредиент
             </div>
             {ingredientError && (

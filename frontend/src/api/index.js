@@ -251,10 +251,13 @@ class Api {
   }
 
   getUser({ id }) {
+    const token = localStorage.getItem("token");
+    const authorization = token ? { authorization: `Token ${token}` } : {};
     return fetch(`/api/users/${id}/`, {
       method: "GET",
       headers: {
         ...this._headers,
+        ...authorization,
       },
     }).then(this.checkResponse);
   }
@@ -321,7 +324,6 @@ class Api {
 
   // tags
   getTags() {
-    const token = localStorage.getItem("token");
     return fetch(`/api/tags/`, {
       method: "GET",
       headers: {

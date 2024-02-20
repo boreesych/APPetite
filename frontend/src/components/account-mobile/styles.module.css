@@ -4,8 +4,8 @@
   flex-direction: column;
   align-items: center;
   text-align: left;
-  border: 1.5px solid #EFEFEF;
-  background: #FFF;
+  border: 1.5px solid #efefef;
+  background: #fff;
   border-radius: 8px;
   padding: 24px 0;
   max-width: 308px;
@@ -25,7 +25,7 @@
   border-radius: 100%;
   overflow: hidden;
   margin-right: 14px;
-  background-image: url('../../images/userpic-icon.jpg');
+  background-image: url("../../images/userpic-icon.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   cursor: pointer;
@@ -38,7 +38,7 @@
 }
 
 .accountEmail {
-  color: #A0A0A0;
+  color: #a0a0a0;
   font-size: 16px;
   line-height: 120%;
 }
@@ -68,6 +68,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex-shrink: 0;
 }
 
 .accountLink {
@@ -79,13 +80,12 @@
   align-items: center;
 }
 
-
 @media screen and (max-width: 610px) {
   .accountProfile {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .accountAvatar {
     margin: 0 0 14px;
   }

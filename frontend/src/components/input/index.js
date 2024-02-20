@@ -7,7 +7,6 @@ const Input = ({
   onChange,
   placeholder,
   label,
-  disabled,
   type = "text",
   inputClassName,
   labelClassName,
@@ -20,6 +19,7 @@ const Input = ({
   error,
   submitError,
   value = "",
+  ...rest
 }) => {
   const [inputValue, setInputValue] = useState(value);
 
@@ -58,6 +58,7 @@ const Input = ({
           onFocus={onFocus}
           value={inputValue}
           onBlur={onBlur}
+          {...rest}
         />
         {errorText && (
           <div className={styles.errorBox}>

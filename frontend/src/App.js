@@ -189,7 +189,6 @@ function App() {
       return api
         .getUserData()
         .then((res) => {
-          console.log({ res });
           setUser(res);
           setLoggedIn(true);
           getOrders();
@@ -322,8 +321,11 @@ function App() {
                 setSubmitError={setRegistrError}
               />
             </Route>
-            <Route path="/">
+            <Route exact path="/">
               <Redirect to="/recipes" />
+            </Route>
+            <Route path="*">
+              <NotFound />
             </Route>
           </Switch>
           <Footer />

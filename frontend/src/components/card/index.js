@@ -117,7 +117,9 @@ const Card = ({
               [styles["card__save-button_active"]]: is_favorited,
             })}
             data-tooltip-id={id}
-            data-tooltip-content="Добавить в избранное"
+            data-tooltip-content={
+              is_favorited ? "Удалить из избранного" : "Добавить в избранное"
+            }
             data-tooltip-place="bottom"
           >
             <Icons.LikeIcon />
