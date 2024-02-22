@@ -132,7 +132,11 @@ const SingleCard = ({ loadItem, updateOrders }) => {
                           is_favorited,
                       })}
                       data-tooltip-id="tooltip-save"
-                      data-tooltip-content="Добавить в избранное"
+                      data-tooltip-content={
+                        is_favorited
+                          ? "Удалить из избранного"
+                          : "Добавить в избранное"
+                      }
                       data-tooltip-place="bottom"
                     >
                       <Icons.LikeIcon />
@@ -184,7 +188,11 @@ const SingleCard = ({ loadItem, updateOrders }) => {
                       });
                     }}
                     data-tooltip-id="tooltip-subscribe"
-                    data-tooltip-content="Подписаться на автора"
+                    data-tooltip-content={
+                      author.is_subscribed
+                        ? "Отписаться от автора"
+                        : "Подписаться на автора"
+                    }
                     data-tooltip-place="bottom"
                   >
                     <Icons.AddUser />

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import transaction
 from django.db.models import F
 from drf_extra_fields.fields import Base64ImageField
@@ -102,7 +103,8 @@ class RecipeShortSerializer(serializers.ModelSerializer):
 class RecipeAddIngredientsSerializer(serializers.ModelSerializer):
     id = serializers.PrimaryKeyRelatedField(
         queryset=Ingredient.objects.all())
-    amount = serializers.IntegerField(min_value=1)
+    amount = serializers.IntegerField(
+        min_value=1, max_value=settings.MAX_POSITIVE_INTEGER)
 
     class Meta:
         model = RecipeIngredients

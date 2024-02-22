@@ -1,5 +1,5 @@
 .main {
-  min-height: calc(100dvh - 203px - 100px);
+  min-height: calc(100dvh - 150px - 100px);
 }
 
 .mainBG {
@@ -25,6 +25,6 @@
 
 @media screen and (max-width: 770px) {
   .main {
-    min-height: calc(100dvh - 290px - 100px - 40px);
+    min-height: calc(100dvh - 290px - 100px);
   }
 }

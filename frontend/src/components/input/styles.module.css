@@ -38,16 +38,18 @@
 }
 
 .inputField:focus {
-  border: 2px solid #000;
-  outline: none;
+  outline: 2px solid #000;
+  border: 1px solid #fff;
 }
 
 .inputError {
-  border: 2px solid #ff3b30;
+  outline: 2px solid #ff3b30;
+  border: 1px solid #fff;
 }
 
 .inputError.inputField:focus {
-  border: 2px solid #ff3b30;
+  outline: 2px solid #ff3b30;
+  border: 1px solid #fff;
 }
 
 .errorBox {
