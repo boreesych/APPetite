@@ -135,7 +135,8 @@ class Recipe(models.Model):
         return short_link
 
     def save(self, *args, **kwargs):
-        self.short_link = self.generate_unique_short_id(self.text)
+        if self.short_link is None:
+            self.short_link = self.generate_unique_short_id(self.text)
         super().save(*args, **kwargs)
 
 
