@@ -30,7 +30,7 @@ class RecipeAdmin(admin.ModelAdmin):
         'get_ingredients', 'get_tags',
         'pub_date', 'pk', 'get_image'
     )
-    exclude = ('short_link',)
+    # exclude = ('short_link',)
     search_fields = ('name', 'author')
     list_filter = ('tags__name',)
 
