@@ -25,7 +25,7 @@ class IngredientSerializer(serializers.ModelSerializer):
 
 class UsersSerializer(serializers.ModelSerializer):
     is_subscribed = serializers.SerializerMethodField()
-    avatar = serializers.SerializerMethodField
+    avatar = serializers.SerializerMethodField()
 
     class Meta:
         model = User
