@@ -25,6 +25,7 @@ class IngredientSerializer(serializers.ModelSerializer):
 
 class UsersSerializer(serializers.ModelSerializer):
     is_subscribed = serializers.SerializerMethodField()
+    avatar = serializers.SerializerMethodField
 
     class Meta:
         model = User
@@ -43,6 +44,10 @@ class UsersSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         return (request and request.user.is_authenticated
                 and request.user.subscriber.filter(author=author).exists())
+
+    def get_avatar(self, obj):
+        if obj.avatar:
+            return obj.avatar.url
 
 
 class SetAvatarSerializer(serializers.ModelSerializer):
@@ -124,6 +129,7 @@ class RecipeReadSerializer(serializers.ModelSerializer):
     ingredients = serializers.SerializerMethodField()
     is_favorited = serializers.BooleanField(default=False)
     is_in_shopping_cart = serializers.BooleanField(default=False)
+    image = serializers.SerializerMethodField()
 
     class Meta:
         model = Recipe
@@ -138,6 +144,10 @@ class RecipeReadSerializer(serializers.ModelSerializer):
             'measurement_unit',
             amount=F('recipeingredients__amount')
         )
+
+    def get_image(self, obj):
+        if obj.image:
+            return obj.image.url
 
 
 class RecipeWriteSerializer(serializers.ModelSerializer):
