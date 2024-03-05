@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 80px;
+  margin-top: 52px;
 }
 
 .paginationItem {
@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #A0A0A0;
+  color: #a0a0a0;
   font-size: 32px;
   margin-right: 10px;
   font-weight: 600;
@@ -35,7 +35,7 @@
   background: #000;
   justify-content: center;
   max-width: 44px;
-  border-radius: 44px;;
+  border-radius: 44px;
 }
 
 .arrowLeft {
@@ -58,11 +58,11 @@
 
 .arrowDisabled {
   cursor: not-allowed;
-  background: #EFEFEF;
+  background: #efefef;
 }
 
 .arrowDisabled path {
-  stroke: #A0A0A0;
+  stroke: #a0a0a0;
 }
 
 @media screen and (max-width: 660px) {

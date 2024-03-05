@@ -20,4 +20,5 @@
 .headerLink {
   text-align: left;
   width: fit-content;
+  user-select: none;
 }

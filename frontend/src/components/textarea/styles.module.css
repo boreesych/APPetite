@@ -1,6 +1,6 @@
 .textarea {
   margin-bottom: 35px;
-  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  font-family: 'SF Pro Display', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -26,7 +26,7 @@
   border-radius: 6px;
   resize: none;
   outline: none;
-  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  font-family: 'SF Pro Display', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

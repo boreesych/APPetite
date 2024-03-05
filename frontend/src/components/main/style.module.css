@@ -1,5 +1,5 @@
 .main {
-  min-height: calc(100dvh - 150px - 100px);
+  min-height: calc(100dvh - 150px - 50px - 100px);
 }
 
 .mainBG {
