@@ -17,6 +17,7 @@
 .subscriptionRecipeLink {
   color: #000;
   text-decoration: none;
+  line-height: 1.2;
 }
 
 .subscriptionBody {
@@ -29,7 +30,7 @@
 }
 
 .subscriptionTitle {
-  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "SF Pro Display", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -83,7 +84,7 @@
 }
 
 .subscriptionLink {
-  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "SF Pro Display", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -112,7 +113,7 @@
 }
 
 .subscriptionRecipeTitle {
-  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "SF Pro Display", sans-serif;
   font-style: normal;
   font-weight: 500;
   max-width: 200px;
@@ -133,7 +134,7 @@
 }
 
 .subscriptionRecipeText {
-  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "SF Pro Display", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -156,7 +157,7 @@
 }
 
 .subscriptionMore {
-  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "SF Pro Display", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

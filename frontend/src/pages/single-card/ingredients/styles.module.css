@@ -4,16 +4,15 @@
 
 .ingredients__list {
   display: flex;
-  flex-direction: column;
   padding: 0;
   margin: 0;
-  max-height: 104px;
   flex-wrap: wrap;
   padding-left: 18px;
+  gap: 0 30px;
 }
 
 .ingredients__title {
-  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "SF Pro Display", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
@@ -25,7 +24,7 @@
 .ingredients__list-item {
   font-size: 18px;
   line-height: 24px;
-  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  font-family: "SF Pro Display", sans-serif;
   font-style: normal;
   font-weight: normal;
   color: #000;
