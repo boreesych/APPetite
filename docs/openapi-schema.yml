@@ -318,6 +318,27 @@ paths:
           $ref: '#/components/responses/NotFound'
       tags:
         - Рецепты
+  /api/recipes/{id}/get-link/:
+    get:
+      operationId: Получить короткую ссылку на рецепт
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "Уникальный идентификатор рецепта."
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeGetShortLink'
+          description: 'Ссылка на рецепт'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Рецепты
   /api/recipes/{id}/favorite/:
     post:
       operationId: Добавить рецепт в избранное
@@ -656,6 +677,41 @@ paths:
           $ref: '#/components/responses/AuthenticationError'
       tags:
         - Пользователи
+  /api/users/set_avatar/:
+    patch:
+      operationId: Добавление аватара
+      description: Добавление аватара текущего пользователя
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetAvatar'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetAvatarResponse'
+          description: ''
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+      tags:
+        - Пользователи
+  /api/users/delete-avatar/:
+    delete:
+      operationId: Удаление аватара
+      description: Удаление аватара текущего пользователя
+      parameters: []
+      responses:
+        '204':
+          description: Аватар успешно удален
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+      tags:
+        - Пользователи
   /api/auth/token/login/:
     post:
       operationId: Получить токен авторизации
@@ -729,6 +785,11 @@ components:
           readOnly: true
           description: "Подписан ли текущий пользователь на этого"
           example: false
+        avatar:
+          type: string
+          format: url
+          description: 'Ссылка на аватар'
+          example: 'http://foodgram.example.org/media/users/image.png'
       required:
         - username
     UserWithRecipes:
@@ -769,6 +830,30 @@ components:
         recipes_count:
           type: integer
           description: 'Общее количество рецептов пользователя'
+        avatar:
+          type: string
+          format: url
+          description: 'Ссылка на аватар'
+          example: 'http://foodgram.example.org/media/users/image.png'
+    SetAvatar:
+      description: 'Добавление аватара пользователя'
+      type: object
+      properties:
+        avatar:
+          description: 'Картинка, закодированная в Base64'
+          example: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAgMAAABieywaAAAACVBMVEUAAAD///9fX1/S0ecCAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNoAAAAggCByxOyYQAAAABJRU5ErkJggg=='
+          type: string
+          format: binary
+      required:
+        - avatar
+    SetAvatarResponse:
+      type: object
+      properties:
+        avatar:
+          type: string
+          format: url
+          description: 'Ссылка на аватар'
+          example: 'http://foodgram.example.org/media/users/image.png'
 
     Tag:
       type: object
@@ -778,19 +863,13 @@ components:
           readOnly: true
         name:
           type: string
-          maxLength: 200
+          maxLength: 32
           description: 'Название'
           example: 'Завтрак'
-        color:
-          type: string
-          nullable: true
-          maxLength: 7
-          description: 'Цвет в HEX'
-          example: '#E26C2D'
         slug:
           type: string
           nullable: true
-          maxLength: 200
+          maxLength: 32
           pattern: ^[-a-zA-Z0-9_]+$
           description: 'Уникальный слаг'
           example: 'breakfast'
@@ -821,11 +900,11 @@ components:
           description: 'Находится ли в корзине'
         name:
           type: string
-          maxLength: 200
+          maxLength: 256
           description: 'Название'
         image:
           description: 'Ссылка на картинку на сайте'
-          example: 'http://foodgram.example.org/media/recipes/images/image.jpeg'
+          example: 'http://foodgram.example.org/media/recipes/images/image.png'
           type: string
           format: url
         text:
@@ -853,17 +932,24 @@ components:
           description: 'Уникальный id'
         name:
           type: string
-          maxLength: 200
+          maxLength: 256
           description: 'Название'
         image:
           description: 'Ссылка на картинку на сайте'
-          example: 'http://foodgram.example.org/media/recipes/images/image.jpeg'
+          example: 'http://foodgram.example.org/media/recipes/images/image.png'
           type: string
           format: url
         cooking_time:
           description: 'Время приготовления (в минутах)'
           type: integer
           minimum: 1
+    RecipeGetShortLink:
+      type: object
+      properties:
+        short_link:
+          type: string
+          description: 'Сокращенная ссылка'
+          example: 'https://foodgram.example.org/s/h3dFe1S'
     Ingredient:
       type: object
       properties:
@@ -872,11 +958,11 @@ components:
           readOnly: true
         name:
           type: string
-          maxLength: 200
+          maxLength: 128
           example: 'Капуста'
         measurement_unit:
           type: string
-          maxLength: 200
+          maxLength: 64
           example: 'кг'
       required:
         - name
@@ -889,12 +975,12 @@ components:
           readOnly: true
         name:
           type: string
-          maxLength: 200
+          maxLength: 128
           description: 'Название'
           example: 'Картофель отварной'
         measurement_unit:
           type: string
-          maxLength: 200
+          maxLength: 64
           description: 'Единицы измерения'
           example: 'г'
         amount:
@@ -935,7 +1021,7 @@ components:
           example: "Пупкин"
         password:
           type: string
-          maxLength: 150
+          maxLength: 128
           description: "Пароль"
           example: "Qwerty123"
       required:
@@ -1086,7 +1172,7 @@ components:
         name:
           description: 'Название'
           type: string
-          maxLength: 200
+          maxLength: 256
         text:
           description: 'Описание'
           type: string
