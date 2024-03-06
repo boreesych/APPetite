@@ -41,6 +41,13 @@ const RecipeCreate = ({ onEdit }) => {
 
   const handleAddIngredient = () => {
     if (
+      ingredientValue.amount !== "" &&
+      !/^\d+$/.test(ingredientValue.amount)
+    ) {
+      return setIngredientError("Количество ингредиента должно быть целым числом");
+    }
+
+    if (
       ingredientValue.amount === "" ||
       ingredientValue.name === "" ||
       !ingredientValue.id
