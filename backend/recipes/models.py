@@ -128,14 +128,14 @@ class Recipe(models.Model):
         return self.name
 
     def generate_unique_short_id(self, text):
-        short_link = shake_128(text.encode('utf-8')).hexdigest(2)
+        short_link = shake_128(text.encode('utf-8')).hexdigest(6)
         if Recipe.objects.filter(short_link=short_link).exists():
             shift = randint(0, 9)
             return self.generate_unique_short_id(text + str(shift))
         return short_link
 
     def save(self, *args, **kwargs):
-        if not self.short_link:
+        if self.short_link is None:
             self.short_link = self.generate_unique_short_id(self.text)
         super().save(*args, **kwargs)
 
