@@ -693,7 +693,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SetAvatarResponse'
-          description: ''
+          description: 'Аватар успешно добавлен'
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -949,7 +949,7 @@ components:
         short_link:
           type: string
           description: 'Сокращенная ссылка'
-          example: 'https://foodgram.example.org/s/h3dFe1S'
+          example: 'https://foodgram.example.org/s/3d0'
     Ingredient:
       type: object
       properties:
@@ -1018,7 +1018,7 @@ components:
           type: string
           maxLength: 150
           description: "Фамилия"
-          example: "Пупкин"
+          example: "Иванов"
         password:
           type: string
           maxLength: 128
