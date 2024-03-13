@@ -677,7 +677,7 @@ paths:
           $ref: '#/components/responses/AuthenticationError'
       tags:
         - Пользователи
-  /api/users/set_avatar/:
+  /api/users/set-avatar/:
     patch:
       operationId: Добавление аватара
       description: Добавление аватара текущего пользователя
