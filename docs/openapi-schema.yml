@@ -779,7 +779,7 @@ components:
           type: string
           maxLength: 150
           description: "Фамилия"
-          example: "Пупкин"
+          example: "Иванов"
         is_subscribed:
           type: boolean
           readOnly: true
@@ -818,7 +818,7 @@ components:
           type: string
           maxLength: 150
           description: "Фамилия"
-          example: "Пупкин"
+          example: "Иванов"
         is_subscribed:
           type: boolean
           readOnly: true
@@ -1057,7 +1057,7 @@ components:
           type: string
           maxLength: 150
           description: "Фамилия"
-          example: "Пупкин"
+          example: "Иванов"
       required:
         - username
         - first_name
