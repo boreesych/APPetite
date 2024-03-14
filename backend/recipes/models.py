@@ -13,11 +13,11 @@ class Ingredient(models.Model):
 
     name = models.CharField(
         'Название ингредиента',
-        max_length=settings.RECIPES_MAX_LENGTH,
+        max_length=settings.INGREDIENTS_NAME_MAX_LENGTH,
     )
     measurement_unit = models.CharField(
         'Единица измерения',
-        max_length=settings.RECIPES_MAX_LENGTH,
+        max_length=settings.MEASUREMENT_UNITS_MAX_LENGTH,
     )
 
     class Meta:
@@ -40,12 +40,12 @@ class Tag(models.Model):
 
     name = models.CharField(
         'Название тега',
-        max_length=settings.RECIPES_MAX_LENGTH,
+        max_length=settings.TAGS_MAX_LENGTH,
         unique=True
     )
     slug = models.SlugField(
         'Slug',
-        max_length=settings.RECIPES_MAX_LENGTH,
+        max_length=settings.TAGS_MAX_LENGTH,
         unique=True
     )
 
@@ -73,7 +73,7 @@ class Recipe(models.Model):
 
     name = models.CharField(
         'Название рецепта',
-        max_length=settings.RECIPES_MAX_LENGTH,
+        max_length=settings.RECIPES_NAME_MAX_LENGTH,
         help_text='Введите название блюда',
     )
     pub_date = models.DateTimeField(
