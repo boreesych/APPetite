@@ -1028,7 +1028,6 @@ components:
           example: "Иванов"
         password:
           type: string
-          maxLength: 128
           description: "Пароль"
           example: "Qwerty123"
       required:
@@ -1136,6 +1135,9 @@ components:
           type: string
         email:
           type: string
+      required:
+        - password
+        - email
     TokenGetResponse:
       type: object
       properties:
