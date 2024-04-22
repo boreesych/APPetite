@@ -454,8 +454,8 @@ paths:
     get:
       operationId: Профиль пользователя
       description: 'Доступно всем пользователям.'
-      security:
-        - Token: [ ]
+      # security:
+      #   - Token: [ ]
       parameters:
         - name: id
           in: path
@@ -482,7 +482,7 @@ paths:
       description: ''
       parameters: []
       security:
-        - Token: [ ]
+        - Token: []
       responses:
         '200':
           content:
@@ -494,10 +494,50 @@ paths:
           $ref: '#/components/responses/AuthenticationError'
       tags:
         - Пользователи
+  /api/users/me/avatar/:
+    patch:
+      operationId: Добавление аватара
+      description: Добавление аватара текущего пользователя
+      parameters: []
+      security:
+        - Token: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetAvatar'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetAvatarResponse'
+          description: 'Аватар успешно добавлен'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+      tags:
+        - Пользователи
+    delete:
+      operationId: Удаление аватара
+      description: Удаление аватара текущего пользователя
+      parameters: []
+      security:
+        - Token: []
+      responses:
+        '204':
+          description: Аватар успешно удален
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+      tags:
+        - Пользователи
   /api/users/subscriptions/:
     get:
       operationId: Мои подписки
       description: 'Возвращает пользователей, на которых подписан текущий пользователь. В выдачу добавляются рецепты.'
+      security:
+        - Token: []
       parameters:
         - name: page
           required: false
@@ -555,7 +595,7 @@ paths:
       operationId: Подписаться на пользователя
       description: 'Доступно только авторизованным пользователям'
       security:
-        - Token: [ ]
+        - Token: []
       parameters:
         - name: id
           in: path
@@ -592,7 +632,7 @@ paths:
       operationId: Отписаться от пользователя
       description: 'Доступно только авторизованным пользователям'
       security:
-        - Token: [ ]
+        - Token: []
       parameters:
         - name: id
           in: path
@@ -658,45 +698,13 @@ paths:
           description: ''
       tags:
         - Ингредиенты
-  /api/users/me/avatar/:
-    patch:
-      operationId: Добавление аватара
-      description: Добавление аватара текущего пользователя
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SetAvatar'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SetAvatarResponse'
-          description: 'Аватар успешно добавлен'
-        '400':
-          $ref: '#/components/responses/ValidationError'
-        '401':
-          $ref: '#/components/responses/AuthenticationError'
-      tags:
-        - Пользователи
-    delete:
-      operationId: Удаление аватара
-      description: Удаление аватара текущего пользователя
-      parameters: []
-      responses:
-        '204':
-          description: Аватар успешно удален
-        '401':
-          $ref: '#/components/responses/AuthenticationError'
-      tags:
-        - Пользователи
   /api/users/set_password/:
     post:
       operationId: Изменение пароля
       description: 'Изменение пароля текущего пользователя'
       parameters: []
+      security:
+        - Token: []
       requestBody:
         content:
           application/json:
@@ -735,6 +743,8 @@ paths:
       operationId: Удаление токена
       description: Удаляет токен текущего пользователя
       parameters: []
+      security:
+        - Token: []
       requestBody:
         content:
           application/json:
