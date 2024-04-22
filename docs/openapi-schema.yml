@@ -656,6 +656,7 @@ paths:
           description: ''
       tags:
         - Ингредиенты
+<<<<<<< HEAD
   /api/users/set_password/:
     post:
       operationId: Изменение пароля
@@ -678,6 +679,9 @@ paths:
       tags:
         - Пользователи
   /api/users/set-avatar/:
+=======
+  /api/users/me/avatar/:
+>>>>>>> a86c377 (update avatar endpoint)
     patch:
       operationId: Добавление аватара
       description: Добавление аватара текущего пользователя
@@ -702,7 +706,6 @@ paths:
           $ref: '#/components/responses/AuthenticationError'
       tags:
         - Пользователи
-  /api/users/delete-avatar/:
     delete:
       operationId: Удаление аватара
       description: Удаление аватара текущего пользователя
@@ -712,6 +715,25 @@ paths:
       responses:
         '204':
           description: Аватар успешно удален
+        '401':
+          $ref: '#/components/responses/AuthenticationError'
+      tags:
+        - Пользователи
+  /api/users/set_password/:
+    post:
+      operationId: Изменение пароля
+      description: 'Изменение пароля текущего пользователя'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetPassword'
+      responses:
+        '204':
+          description: 'Пароль успешно изменен'
+        '400':
+          $ref: '#/components/responses/ValidationError'
         '401':
           $ref: '#/components/responses/AuthenticationError'
       tags:
