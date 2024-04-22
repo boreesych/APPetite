@@ -92,10 +92,10 @@ class UserViewSet(DjoserUserViewSet):
         )
 
     @action(
-        methods=('patch',),
+        methods=('put',),
         detail=False,
         permission_classes=(IsAuthenticated,),
-        url_path='set-avatar',
+        url_path='me/avatar',
     )
     def set_avatar(self, request):
         serializer = SetAvatarSerializer(request.user, data=request.data)
@@ -103,12 +103,7 @@ class UserViewSet(DjoserUserViewSet):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    @action(
-        methods=('delete',),
-        detail=False,
-        permission_classes=(IsAuthenticated,),
-        url_path='delete-avatar'
-    )
+    @set_avatar.mapping.delete
     def delete_avatar(self, request):
         setattr(request.user, 'avatar', None)
         request.user.save()
