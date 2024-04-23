@@ -76,9 +76,9 @@ class UserViewSet(DjoserUserViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     @action(
-            detail=False,
-            methods=('get',),
-            permission_classes=(IsAuthenticated,),
+        detail=False,
+        methods=('get',),
+        permission_classes=(IsAuthenticated,),
     )
     def subscriptions(self, request):
         return self.get_paginated_response(
