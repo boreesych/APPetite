@@ -553,8 +553,6 @@ paths:
           description: Количество объектов внутри поля recipes.
           schema:
             type: integer
-      security:
-        - Token: []
       responses:
         '200':
           content:
@@ -953,7 +951,7 @@ components:
     RecipeGetShortLink:
       type: object
       properties:
-        short_link:
+        short-link:
           type: string
           description: 'Сокращенная ссылка'
           format: uri
