@@ -171,8 +171,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     @staticmethod
     def create_object(serializer_name, request, pk):
+        recipe = get_object_or_404(Recipe, pk=pk)
         serializer = serializer_name(
-            data={'user': request.user.id, 'recipe': pk, },
+            data={'user': request.user.id, 'recipe': recipe.pk, },
             context={'request': request}
         )
         serializer.is_valid(raise_exception=True)
