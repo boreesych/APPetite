@@ -114,7 +114,7 @@ class Recipe(models.Model):
         verbose_name='Теги'
     )
     short_link = models.CharField(
-        'Сокращенная ссылка', max_length=16
+        'Сокращенная ссылка', max_length=16, unique=True,
     )
 
     objects = RecipeQuerySet.as_manager()
