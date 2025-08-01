@@ -1,12 +1,12 @@
-# Foodgram
+# APPetite
 
 ## Project Description
 
-Foodgram is a full-stack web application developed as part of the Yandex Practicum training program. It serves as a comprehensive example of modern web development, combining both backend and frontend technologies.
+APPetite is a full-stack web application developed as part of the Yandex Practicum training program. It serves as a comprehensive example of modern web development, combining both backend and frontend technologies.
 
 The backend is built with the Django framework, and the frontend is implemented as a Single Page Application (SPA) using React, providing a fast and seamless user experience.
 
-Foodgram allows users to share their favorite recipes, discover new dishes, follow other users, add recipes to favorites, and automatically generate shopping lists based on selected meals. It functions as a culinary social network, combining inspiration with practical tools.
+APPetite allows users to share their favorite recipes, discover new dishes, follow other users, add recipes to favorites, and automatically generate shopping lists based on selected meals. It functions as a culinary social network, combining inspiration with practical tools.
 
 The project showcases skills in REST API development, user authentication, filtering, business logic, and responsive UI design. It includes features like tag-based filtering, image uploading, pagination, and real-time ingredient search.
 
@@ -49,8 +49,8 @@ Additionally, the project includes Postman test collections to verify the API en
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/boreesych/foodgram_final_test.git
-cd foodgram
+git clone https://github.com/boreesych/APPetite_final_test.git
+cd APPetite
 ```
 
 ### 2. Add Environment Variables
