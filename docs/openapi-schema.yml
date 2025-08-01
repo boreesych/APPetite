@@ -853,7 +853,7 @@ components:
         name:
           type: string
           maxLength: 32
-          description: 'Уникальное название'
+          description: 'Название'
           example: 'Завтрак'
         slug:
           type: string
